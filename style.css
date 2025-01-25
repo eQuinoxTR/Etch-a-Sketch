@@ -1,13 +1,9 @@
-
 .flex-item {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     height: 100%;
 }
-
-
-
 
 h1 {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -17,12 +13,13 @@ h1 {
 }
 
 .grid {
-    width: 7.5px;
-    height: 7.5px;
-    border: solid rgba(65, 73, 83, 0.109) .001mm;
+    border: solid rgba(55, 61, 65, 0.397) 0.1px;
     background-color: rgb(46, 52, 61);
+    width: 100%;
+    height: 100%;
 }
-.grid:hover {
+
+.grid:hover  {
     background-color: rgb(174, 174, 174);
     transition: 50ms;
 }
@@ -31,43 +28,24 @@ h1 {
     background-color: rgb(255, 255, 255);
     transition: 500ms;
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: auto;
+    width: 850px;
+    height: 850px;
     justify-content: center;
-    height: auto;
-    container: secondContainer / block-size;
+    align-self: center;
 }
+
 .gridColumnContainers {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    flex-grow: 1;
 }
 
-body {
-    container: body / size;
-}
-
-@container (max-height: 900px){
-    .grid {
-     width: 7px;
-     height: 7px;
-    }
- }
- @container (max-height: 800px){
-    .grid {
-     width: 6px;
-     height: 6px;
-    }
- }
- @container (max-height: 700px){
-    .grid {
-     width: 5px;
-     height: 5px;
-    }
-
- }
  .ui-container {
     display: flex;
     flex-direction: column;
@@ -75,6 +53,7 @@ body {
     align-items: center;
     gap: 5px;
  }
+
  input {
     color: grey;
     font-size: 20px;
@@ -83,6 +62,7 @@ body {
     text-align: center;
     padding: 5px;
  }
+
  .select-txt {
     font-size: small;
     color: rgb(84, 84, 84);

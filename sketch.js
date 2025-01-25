@@ -5,7 +5,7 @@ createGrid();
 
 input.addEventListener("input", () => {
     amountOfSquares = +`${input.value}`;
-    container.replaceChildren() // cleans the old grid in case of an input
+    container.replaceChildren(); // cleans the old grid in case of an input
     createGrid();
     return amountOfSquares;
 });
@@ -26,15 +26,10 @@ for (let column = 0; column < amountOfSquares; column++){
 }
     let grid = document.querySelectorAll(".grid");
         grid.forEach( grid => {
-            grid.addEventListener("mouseover", (e) => {
-            if (e.buttons) {
-            grid.setAttribute("id", "clickAfter");
-        }
+            grid.addEventListener("mousemove", (e) => {
+                if (e.buttons) { grid.setAttribute("id", "clickAfter"); }
         })
     })
 }
     const div = document.querySelector("div")
     div.addEventListener("dragstart", (e) => {e.preventDefault()});
-
-
-
