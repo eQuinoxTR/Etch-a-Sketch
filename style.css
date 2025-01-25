@@ -1,3 +1,23 @@
+:root.light-theme {
+    --background-body: rgb(255, 255, 255);
+    --input-color: rgb(255, 255, 255);
+    --font-color: rgb(0, 0, 0);
+    --url-image-switch: url(./light.svg);
+}
+
+:root.dark-theme {
+    --background-body: rgb(32, 33, 36);
+    --input-color: rgb(172, 172, 172);
+    --font-color: rgb(172, 172, 172);
+    --url-image-switch: url(./dark.svg);
+    --duration: 1500ms;
+}
+
+body {
+    transition: var(--duration);
+    background-color: var(--background-body);
+}
+
 .flex-item {
     display: flex;
     flex-direction: row;
@@ -13,7 +33,7 @@ h1 {
 }
 
 .grid {
-    border: solid rgba(55, 61, 65, 0.397) 0.1px;
+    border: solid rgba(50, 63, 70, 0.288) 0.1px;
     background-color: rgb(46, 52, 61);
     width: 100%;
     height: 100%;
@@ -21,20 +41,18 @@ h1 {
 
 .grid:hover  {
     background-color: rgb(174, 174, 174);
-    transition: 50ms;
 }
 
 #clickAfter {
     background-color: rgb(255, 255, 255);
-    transition: 500ms;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 950px;
-    height: 950px;
+    width: 875px;
+    height: 875px;
     justify-content: center;
     align-self: center;
 }
@@ -47,6 +65,8 @@ h1 {
 }
 
  .ui-container {
+    transition: var(--duration);
+    color: var(--font-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,16 +75,20 @@ h1 {
  }
 
  input[id*="userInput"] {
-    color: black;
+    color: rgb(65, 65, 65);
     font-size: 20px;
-    border-radius: 5px;
     border: 1.5px solid;
     text-align: center;
     padding: 5px;
+    border-radius: 100px;
+    filter: blur(.5px);
+    transition: var(--duration);
+    background-color: var(--input-color);
+
  }
  
  input::placeholder {
-    color: grey;
+    color: rgb(218, 218, 218);
  }
 
  .colorPicker {
@@ -77,4 +101,22 @@ h1 {
     font-size: small;
     color: rgb(84, 84, 84);
     font-family: 'Courier New', Courier, monospace;
+ }
+ .theme-icon {
+    transition: var(--duration);
+    background-image: var(--url-image-switch);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    margin: 6px;
+ }
+ .theme-icon:active {
+    filter: blur(.9px);
+ }
+
+ .third-container {
+    display: flex;
+    margin-top: 30px;
+    margin-left: 100px;
+    gap: 15px;
  }

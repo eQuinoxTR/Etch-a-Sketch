@@ -1,4 +1,5 @@
 let amountOfSquares = 100; 
+let root = document.documentElement;
 const container = document.querySelector(".container");
 const input = document.querySelector("#userInput");
 let color = document.querySelector(".colorPicker")
@@ -38,3 +39,11 @@ function createGrid (){
 }
     const div = document.querySelector("div")
     div.addEventListener("dragstart", (e) => {e.preventDefault()});
+
+    function toggleTheme(){
+        let changeTheme = root.classList.value == "light-theme" ? "dark-theme" : "light-theme";
+        return root.className = changeTheme;
+    }
+
+    document.querySelector(".theme-icon")
+            .addEventListener("click", () => toggleTheme());
