@@ -3,11 +3,12 @@ let root = document.documentElement;
 const container = document.querySelector(".container");
 const input = document.querySelector("#userInput");
 let color = document.querySelector(".colorPicker")
-const centerX = root.clientWidth/2;
-const centerY = root.clientHeight/2
-let getPositionX = 0;
-let getPositionY = 0;
 let getGridWidthHeight = 850;
+// storage values
+let getY = 0; 
+let getX = 0;
+let getMoveOnX = 0; 
+let getMoveOnY = 0;
 createGrid();
 
 input.addEventListener("input", () => {
@@ -41,28 +42,44 @@ function createGrid (){
         })
     })
 }   
-    // experiment :)
-    requestAnimationFrame(move)
+    function movement () {
+        root.addEventListener("contextmenu", (e) => {
+            getY = e.clientY; // mouse position when click
+            getX = e.clientX;
 
-    function move() {
-        root.addEventListener("mousemove", (e) => {
-            if (e.buttons == "2") {
-                document.querySelector("#txtA").style.color = "transparent";
-                getPositionX += (e.clientX - centerX)/25; // based on the mouse position and the center, move right or left and store it
-                getPositionY += (e.clientY - centerY)/25; // based on the mouse position and the center, move up or down and store it
-                // sensitivity 31 times lesser, otherwise html goes flying :o
-                root.style.setProperty('--mouse-x', ((getPositionX) + "px"));
-                root.style.setProperty('--mouse-y', ((getPositionY) + "px"));
+            function mouseMove (e) {
+                // last mouse position vs new mouse position, with 1px difference after the mouse move
+                getMoveOnX = (getX - e.clientX); 
+                getMoveOnY = (getY - e.clientY);
+                        //    last      new
+
+                // store the new 1px mouse move for the next operation
+                getY = e.clientY; 
+                getX = e.clientX;
+
+                console.log({getMoveOnX, getMoveOnY})
+                // change the position left/top by 1px
+                root.style.setProperty('--mouse-x', ((root.offsetLeft - getMoveOnX) + "px"));
+                root.style.setProperty('--mouse-y', ((root.offsetTop - getMoveOnY) + "px"));
+
             }
-        }); 
+
+            root.addEventListener("mousemove", mouseMove);
+            root.addEventListener("mouseup", (e) => {
+                root.removeEventListener("mousemove", mouseMove)
+            });
+
+            document.querySelector("#txtA").style.color = "transparent";
+        })
     }
+    requestAnimationFrame(movement);
 
     root.addEventListener("wheel", (e) => {
 
         if (e.deltaY > 0) { // if wheel goes up
-        getGridWidthHeight += 25;
-        container.style.width = getGridWidthHeight;
-        container.style.height = getGridWidthHeight;
+            getGridWidthHeight += 25;
+            container.style.width = getGridWidthHeight;
+            container.style.height = getGridWidthHeight;
         } else if (e.deltaY < 0){ // if wheel goes down
             getGridWidthHeight -= 25;
             container.style.width = getGridWidthHeight;
